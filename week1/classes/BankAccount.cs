@@ -4,6 +4,7 @@ public class BankAccount
 {
     private static int s_accountNumberSeed = 1234567890;
     private List<Transaction> _allTransactions = new List<Transaction>();
+    public virtual void PerformMonthEndTransactions() { }
     public string Number { get; }
     public string Owner { get; set; }
     public decimal Balance
