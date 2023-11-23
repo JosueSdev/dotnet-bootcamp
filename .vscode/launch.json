@@ -1,0 +1,19 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "launch variableData",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "buildVariableData",
+      "program": "${workspaceFolder}/week2/variableData/Challenge/bin/Debug/net7.0/Challenge.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/week2/variableData/Challenge",
+      "stopAtEntry": false,
+      "console": "integratedTerminal",
+    }
+  ]
+}
