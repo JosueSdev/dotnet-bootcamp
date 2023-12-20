@@ -1,4 +1,4 @@
-
+﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
@@ -26,6 +26,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "firstBlazor", "week4\firstBlazor\firstBlazor.csproj", "{D31DA03B-6454-4CD8-B3D6-74962BF4B61A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RazorPagesMovie", "week4\RazorPagesMovie\RazorPagesMovie.csproj", "{43DC9B54-874E-44BA-918F-38BB99607F52}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcMovie", "week4\MvcMovie\MvcMovie.csproj", "{B75142EB-EC88-4413-A2A9-CF4C2B5C69A5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -64,6 +66,10 @@ Global
 		{43DC9B54-874E-44BA-918F-38BB99607F52}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{43DC9B54-874E-44BA-918F-38BB99607F52}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{43DC9B54-874E-44BA-918F-38BB99607F52}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B75142EB-EC88-4413-A2A9-CF4C2B5C69A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B75142EB-EC88-4413-A2A9-CF4C2B5C69A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B75142EB-EC88-4413-A2A9-CF4C2B5C69A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B75142EB-EC88-4413-A2A9-CF4C2B5C69A5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{56833E6C-E8B2-496C-98B0-7B512B813CCF} = {C09E9078-1784-4616-833D-363B2C4FD0B3}
@@ -75,5 +81,6 @@ Global
 		{BAFC03A0-07DE-4DB2-9311-6994FBD16123} = {D7B4174F-BB72-4B3B-917C-2811E817C319}
 		{D31DA03B-6454-4CD8-B3D6-74962BF4B61A} = {6CFD1F13-C141-476C-B96F-759A62052925}
 		{43DC9B54-874E-44BA-918F-38BB99607F52} = {6CFD1F13-C141-476C-B96F-759A62052925}
+		{B75142EB-EC88-4413-A2A9-CF4C2B5C69A5} = {6CFD1F13-C141-476C-B96F-759A62052925}
 	EndGlobalSection
 EndGlobal
