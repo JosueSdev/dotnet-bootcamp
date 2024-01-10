@@ -42,4 +42,33 @@ public class PizzaController : ControllerBase
 
         return Ok(pizza);
     }
+
+    [HttpPut("{id}")]
+    public async Task<IActionResult> Put([Bind("Name,Description")] Model.Pizza updatePizza, int? id)
+    {
+        Model.Pizza? pizza = await _context.Pizzas.FindAsync(id);
+
+        if (pizza == null) return NotFound();
+
+        pizza.Name = updatePizza.Name;
+        pizza.Description = updatePizza.Description;
+
+        await _context.SaveChangesAsync();
+
+        return NoContent();
+    }
+
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> Delete(int? id)
+    {
+        Model.Pizza? pizza = await _context.Pizzas.FindAsync(id);
+
+        if (pizza == null) return NotFound();
+
+        _context.Pizzas.Remove(pizza);
+
+        await _context.SaveChangesAsync();
+
+        return NoContent();
+    }
 }
