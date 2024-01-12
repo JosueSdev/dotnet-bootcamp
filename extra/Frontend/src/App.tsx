@@ -1,8 +1,9 @@
 import { QueryClient, QueryClientProvider } from 'react-query'
-import { Index } from './pages';
+
+import { Index } from './pages'
 
 interface AppDependencies {
-  queryClient: QueryClient;
+  queryClient: QueryClient
 }
 
 function App({ queryClient }: AppDependencies) {
