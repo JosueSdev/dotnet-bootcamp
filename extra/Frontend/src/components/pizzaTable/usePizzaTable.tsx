@@ -22,13 +22,7 @@ export const usePizzaTable = () => {
     if (editedId === null) throw new ReferenceError('editing null id');
 
     if (event.target instanceof HTMLFormElement) {
-      const formData = new FormData(event.target)
-
-      pizzaService.replace({
-        id: editedId,
-        name: formData.get('name')?.toString() ?? '',
-        description: formData.get('description')?.toString() ?? '',
-      })
+      pizzaService.replace(editedId, new FormData(event.target))
 
       setEditedId(null)
     }

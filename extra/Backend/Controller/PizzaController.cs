@@ -44,7 +44,7 @@ public class PizzaController : ControllerBase
     }
 
     [HttpPut("{id}")]
-    public async Task<IActionResult> Put([Bind("Name,Description")] Model.Pizza updatePizza, int? id)
+    public async Task<IActionResult> Put([Bind("Name,Description")][FromForm] Model.Pizza updatePizza, int? id)
     {
         Model.Pizza? pizza = await _context.Pizzas.FindAsync(id);
 

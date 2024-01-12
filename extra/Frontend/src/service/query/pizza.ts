@@ -16,7 +16,7 @@ export const usePizzaService = () => {
     },
   })
   const replaceMutation = useMutation({
-    mutationFn: (editedPizza: Pizza) => put(editedPizza),
+    mutationFn: ({ id, pizza }: { id: number, pizza: FormData }) => put(id, pizza),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: BASE_KEY })
     },
@@ -33,9 +33,9 @@ export const usePizzaService = () => {
     removeMutation.mutate(id)
     return { isLoading, isSuccess }
   }
-  const replace = (pizza: Pizza) => {
+  const replace = (id: number, pizza: FormData) => {
     const { isLoading, isSuccess } = replaceMutation;
-    replaceMutation.mutate(pizza)
+    replaceMutation.mutate({ id, pizza })
     return { isLoading, isSuccess }
   }
 
