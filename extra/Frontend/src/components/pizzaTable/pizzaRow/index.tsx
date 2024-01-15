@@ -2,15 +2,17 @@ import { Actions, IActions } from './actions';
 
 interface Props extends IActions {
   pizza: Partial<Pizza>
+  formIdPrefix: string
   editMode?: boolean
   actionsDisabled?: boolean
 }
 
 export const PizzaRow = ({
-  pizza, editMode = false, actionsDisabled = false,
+  pizza, formIdPrefix,
+  editMode = false, actionsDisabled = false,
   onCancel, onDelete, onEdit, onSubmit,
 }: Props) => {
-  const formId = `edit-${pizza.id}`;
+  const formId = `${formIdPrefix}-${pizza.id}`;
 
   return (
     <tr key={pizza.id}>

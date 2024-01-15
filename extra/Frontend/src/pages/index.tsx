@@ -21,6 +21,7 @@ export const Index = () => {
     return (
       <PizzaRow
         key={pizza.id}
+        formIdPrefix="edit-pizza"
         pizza={pizza}
         editMode={editMode}
         actionsDisabled={isEditHappening && !editMode}
