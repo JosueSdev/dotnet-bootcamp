@@ -1,65 +1,48 @@
-import { Actions } from 'src/components/pizzaTable/actions';
-import { usePizzaTable } from 'src/components/pizzaTable/usePizzaTable';
+import { usePizzaService } from 'src/service/pizza';
+
+import { PizzaTable } from 'src/components/pizzaTable';
+import { NewPizzaRow } from 'src/components/pizzaTable/newPizzaRow';
+import { usePizzaTable } from 'src/components/pizzaTable/use';
+import { PizzaRow } from 'src/components/pizzaTable/pizzaRow';
 
 export const Index = () => {
+  const pizzaService = usePizzaService();
+
+  const { data: pizzas } = pizzaService.fetchAll();
   const {
-    data, editedId, deletePizza, cancelEdit, saveEdit, startEdit
-  } = usePizzaTable();
+    editedId, cancelEdit, saveEdit, startEdit, create, remove,
+  } = usePizzaTable(pizzaService.create, pizzaService.replace, pizzaService.remove);
+
+  const isEditHappening = (editedId ?? 0) > 0
+
+  const rows = pizzas?.map((pizza) => {
+    const editMode = editedId === pizza.id
+
+    return (
+      <PizzaRow
+        key={pizza.id}
+        pizza={pizza}
+        editMode={editMode}
+        actionsDisabled={isEditHappening && !editMode}
+        onEdit={() => startEdit(pizza)}
+        onDelete={() => remove(pizza.id)}
+        onCancel={cancelEdit}
+        onSubmit={saveEdit}
+      />
+    )
+  })
 
   return (
     <>
       <h1>Pizzas</h1>
-      <table>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Description</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {data?.map((pizza) => {
-            const editMode = editedId === pizza.id
-            const formId = `edit-${pizza.id}`;
-
-            return (
-              <tr key={pizza.id}>
-                <td>{pizza.id}</td>
-                <td>
-                  <input
-                    type="text"
-                    name="name"
-                    defaultValue={pizza.name}
-                    disabled={!editMode}
-                    form={formId}
-                  />
-                </td>
-                <td>
-                  <input
-                    type="text"
-                    name="description"
-                    defaultValue={pizza.description}
-                    disabled={!editMode}
-                    form={formId}
-                  />
-                </td>
-                <td>
-                  <Actions
-                    formId={formId}
-                    mode={editMode ? 'edit' : 'list'}
-                    disabled={!!(editedId && !editMode)}
-                    onEdit={() => startEdit(pizza)}
-                    onDelete={() => deletePizza(pizza.id)}
-                    onCancel={cancelEdit}
-                    onSubmit={saveEdit}
-                  />
-                </td>
-              </tr>
-            )
-          })}
-        </tbody>
-      </table>
+      <PizzaTable>
+        {rows}
+        <NewPizzaRow
+          formId="new-pizza"
+          onSubmit={create}
+          disabled={isEditHappening}
+        />
+      </PizzaTable>
     </>
   )
 }

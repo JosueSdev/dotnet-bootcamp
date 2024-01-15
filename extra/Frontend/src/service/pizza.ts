@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useMutation, useQuery, useQueryClient } from 'react-query'
-import { getAll, put, remove as removeRequest } from 'src/http/api/pizza';
+import { getAll, post, put, remove as removeRequest } from 'src/http/api/pizza';
 
 const BASE_KEY = 'pizza';
 
@@ -11,6 +11,12 @@ export const usePizzaService = () => {
   const allPizzasQuery = useQuery(BASE_KEY, ({ signal }) => getAll({ signal }), { enabled: doFetchAll })
   const removeMutation = useMutation({
     mutationFn: (pizzaId: number) => removeRequest(pizzaId),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: BASE_KEY })
+    },
+  })
+  const createMutation = useMutation({
+    mutationFn: ((pizza: FormData) => post(pizza)),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: BASE_KEY })
     },
@@ -28,6 +34,11 @@ export const usePizzaService = () => {
     }
     return allPizzasQuery
   }
+  const create = (pizza: FormData) => {
+    const { isLoading, isSuccess } = replaceMutation;
+    createMutation.mutate(pizza)
+    return { isLoading, isSuccess }
+  }
   const remove = (id: number) => {
     const { isLoading, isSuccess } = removeMutation;
     removeMutation.mutate(id)
@@ -41,6 +52,7 @@ export const usePizzaService = () => {
 
   return {
     fetchAll,
+    create,
     replace,
     remove,
   }

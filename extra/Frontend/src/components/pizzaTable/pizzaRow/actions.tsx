@@ -1,13 +1,16 @@
 import { FormEventHandler } from 'react'
 
-interface Props {
-  mode: 'list' | 'edit'
-  formId?: string
-  disabled?: boolean
+export interface IActions {
   onEdit?: () => void
   onDelete?: () => void
   onCancel?: () => void
   onSubmit?: FormEventHandler
+}
+
+interface Props extends IActions {
+  mode: 'list' | 'edit'
+  formId?: string
+  disabled?: boolean
 }
 
 export const Actions = ({

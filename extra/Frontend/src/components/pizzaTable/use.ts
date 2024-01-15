@@ -1,14 +1,18 @@
 import { type FormEventHandler, useState } from 'react';
-import { usePizzaService } from 'src/service/query/pizza';
 
-export const usePizzaTable = () => {
-  const pizzaService = usePizzaService();
+export const usePizzaTable = (
+  onCreate: (pizza: FormData) => void,
+  onReplace: (pizzaId: number, pizza: FormData) => void,
+  onRemove: (pizzaId: number) => void,
+) => {
   const [editedId, setEditedId] = useState<number | null>(null);
 
-  const { data } = pizzaService.fetchAll();
-  const deletePizza = (pizzaId?: number) => {
-    if (pizzaId) {
-      pizzaService.remove(pizzaId)
+  const create: FormEventHandler = (event) => {
+    event.preventDefault();
+
+    if (event.target instanceof HTMLFormElement) {
+      onCreate(new FormData(event.target))
+      event.target.reset()
     }
   }
   const startEdit = (pizza: Partial<Pizza>) => {
@@ -22,7 +26,7 @@ export const usePizzaTable = () => {
     if (editedId === null) throw new ReferenceError('editing null id');
 
     if (event.target instanceof HTMLFormElement) {
-      pizzaService.replace(editedId, new FormData(event.target))
+      onReplace(editedId, new FormData(event.target))
 
       setEditedId(null)
     }
@@ -30,13 +34,18 @@ export const usePizzaTable = () => {
   const cancelEdit = () => {
     setEditedId(null)
   }
+  const remove = (pizzaId?: number) => {
+    if (pizzaId) {
+      onRemove(pizzaId)
+    }
+  }
 
   return {
-    data,
     editedId,
-    deletePizza,
+    create,
     startEdit,
     saveEdit,
     cancelEdit,
+    remove,
   }
 }

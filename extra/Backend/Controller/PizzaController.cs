@@ -23,7 +23,7 @@ public class PizzaController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<IActionResult> Post([Bind("Name,Description")] Model.Pizza pizza)
+    public async Task<IActionResult> Post([FromForm][Bind("Name,Description")] Model.Pizza pizza)
     {
         await _context.Pizzas.AddAsync(pizza);
         await _context.SaveChangesAsync();
