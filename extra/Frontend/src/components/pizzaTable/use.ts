@@ -1,4 +1,4 @@
-import { type FormEventHandler, useState } from 'react';
+import { type FormEventHandler, useState } from 'react'
 
 export const usePizzaTable = (
   onCreate: (pizza: FormData) => void,

@@ -6,7 +6,7 @@ interface Props {
   onSubmit?: FormEventHandler
 }
 
-export const NewPizzaRow = ({ formId, disabled = false, onSubmit }: Props) => {
+export const NewRow = ({ formId, disabled = false, onSubmit }: Props) => {
   return (
     < tr >
       <td />

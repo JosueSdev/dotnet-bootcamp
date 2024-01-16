@@ -1,17 +1,15 @@
-import { usePizzaService } from 'src/service/pizza';
+import { usePizzaService } from 'src/service/pizza'
 
-import { PizzaTable } from 'src/components/pizzaTable';
-import { NewPizzaRow } from 'src/components/pizzaTable/newPizzaRow';
-import { usePizzaTable } from 'src/components/pizzaTable/use';
-import { PizzaRow } from 'src/components/pizzaTable/pizzaRow';
+import { PizzaTable, Row, NewRow } from 'src/components/pizzaTable'
+import { usePizzaTable } from 'src/components/pizzaTable/use'
 
 export const Index = () => {
-  const pizzaService = usePizzaService();
+  const pizzaService = usePizzaService()
 
-  const { data: pizzas } = pizzaService.fetchAll();
+  const { data: pizzas } = pizzaService.fetchAll()
   const {
     editedId, cancelEdit, saveEdit, startEdit, create, remove,
-  } = usePizzaTable(pizzaService.create, pizzaService.replace, pizzaService.remove);
+  } = usePizzaTable(pizzaService.create, pizzaService.replace, pizzaService.remove)
 
   const isEditHappening = (editedId ?? 0) > 0
 
@@ -19,7 +17,7 @@ export const Index = () => {
     const editMode = editedId === pizza.id
 
     return (
-      <PizzaRow
+      <Row
         key={pizza.id}
         formIdPrefix="edit-pizza"
         pizza={pizza}
@@ -38,7 +36,7 @@ export const Index = () => {
       <h1>Pizzas</h1>
       <PizzaTable>
         {rows}
-        <NewPizzaRow
+        <NewRow
           formId="new-pizza"
           onSubmit={create}
           disabled={isEditHappening}

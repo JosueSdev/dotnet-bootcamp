@@ -1,23 +1,3 @@
-import type { ReactNode } from 'react'
-
-interface Props {
-  children?: ReactNode
-}
-
-export const PizzaTable = ({ children }: Props) => {
-  return (
-    <table>
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Name</th>
-          <th>Description</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        {children}
-      </tbody>
-    </table>
-  )
-}
+export { PizzaTable } from './PizzaTable'
+export { Row } from 'src/components/pizzaTable/row'
+export { NewRow } from 'src/components/pizzaTable/newRow'

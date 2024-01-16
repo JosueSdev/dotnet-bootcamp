@@ -7,7 +7,7 @@ interface Props extends IActions {
   actionsDisabled?: boolean
 }
 
-export const PizzaRow = ({
+export const Row = ({
   pizza, formIdPrefix,
   editMode = false, actionsDisabled = false,
   onCancel, onDelete, onEdit, onSubmit,
